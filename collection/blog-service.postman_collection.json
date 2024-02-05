@@ -129,15 +129,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/api/posts/category/{{id}}",
+							"raw": "{{url}}/api/posts",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"api",
-								"posts",
-								"category",
-								"{{id}}"
+								"posts"
 							]
 						}
 					},
@@ -245,6 +243,301 @@
 								"api",
 								"posts",
 								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Категории",
+			"item": [
+				{
+					"name": "Добавить категорию",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJwaW1tcEBnbWFpbC5jb20iLCJpYXQiOjE3MDcxNDg3MTAsImV4cCI6MTcwNzc1MzUxMH0.O9Z1SPhMgNrfh4d8d1M3r9a4G17q28Z89FAe06kpuRQnA0M9uPuXnHXoYyR9lx-X",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"pets\",\r\n  \"description\": \"dogs\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/categories",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получение всех категорий",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/posts",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получение категории по id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/V1/categories/{{id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"V1",
+								"categories",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Обновление категории",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJwaW1tcEBnbWFpbC5jb20iLCJpYXQiOjE3MDcxNDUyNTcsImV4cCI6MTcwNzc1MDA1N30.Wmyvr-kv0sZUgdfrFrdDp-Ei5gsAgQlZnIf9ztQEQcKmr-bFzE06gLF54DFDJ8Gt",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 5,\r\n  \"name\": \"pets\",\r\n  \"description\": \"rabbits\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/categories/{{id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление категории",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJwaW1tcEBnbWFpbC5jb20iLCJpYXQiOjE3MDcxNDUyNTcsImV4cCI6MTcwNzc1MDA1N30.Wmyvr-kv0sZUgdfrFrdDp-Ei5gsAgQlZnIf9ztQEQcKmr-bFzE06gLF54DFDJ8Gt",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/categories/{{id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Комментарии",
+			"item": [
+				{
+					"name": "Добавление комментария",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJwaW1tcEBnbWFpbC5jb20iLCJpYXQiOjE3MDcxNDg3MTAsImV4cCI6MTcwNzc1MzUxMH0.O9Z1SPhMgNrfh4d8d1M3r9a4G17q28Z89FAe06kpuRQnA0M9uPuXnHXoYyR9lx-X",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 31,\r\n  \"name\": \"Svetlana\",\r\n  \"email\": \"sveta@mail.ru\",\r\n  \"body\": \"small dogs Beer\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/posts/31/comments",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"posts",
+								"31",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получение комментариев",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJwaW1tcEBnbWFpbC5jb20iLCJpYXQiOjE3MDcxNDg3MTAsImV4cCI6MTcwNzc1MzUxMH0.O9Z1SPhMgNrfh4d8d1M3r9a4G17q28Z89FAe06kpuRQnA0M9uPuXnHXoYyR9lx-X",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/post/{{postId}}/comments",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"{{postId}}",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получение ком-ия по id",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "обновление комментария",
+					"request": {
+						"method": "PUT",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление комментария",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJwaW1tcEBnbWFpbC5jb20iLCJpYXQiOjE3MDcxNDg3MTAsImV4cCI6MTcwNzc1MzUxMH0.O9Z1SPhMgNrfh4d8d1M3r9a4G17q28Z89FAe06kpuRQnA0M9uPuXnHXoYyR9lx-X",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/posts/2/comments/{{idcomment}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"posts",
+								"2",
+								"comments",
+								"{{idcomment}}"
 							]
 						}
 					},
