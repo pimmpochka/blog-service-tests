@@ -10,13 +10,148 @@
 			"name": "Авторизация",
 			"item": [
 				{
+					"name": "Усшеный запрос на авторизацию",
+					"item": [
+						{
+							"name": "Логин",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response have tokenType = Bearer\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.tokenType).to.eql(\"Bearer\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Response have accessToken\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.accessToken);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"usernameOrEmail\": \"pimpo\",\r\n  \"password\": \"admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Не успешный запрос на авторизацию",
+					"item": [
+						{
+							"name": "Логин",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 500\", function () {\r",
+											"    pm.response.to.have.status(500);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response have tokenType = Bearer\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.eql(\"Неверные учетные данные пользователя\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"usernameOrEmail\": \"not_exist\",\r\n  \"password\": \"test_password\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Регистрация",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJwaW1tcEBnbWFpbC5jb20iLCJpYXQiOjE3MDc3NjU3MzEsImV4cCI6MTcwODM3MDUzMX0.WFy8HdN9s-oT-e0u3gkALHTAQcd9yffPLc8aHkWo9AExpjPt_lY2Zjq1saBPC2aI",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Andrey\",\r\n  \"username\": \"pimpo\",\r\n  \"email\": \"pimmp@gmail.com\",\r\n  \"password\": \"admin\"\r\n}",
+							"raw": "{\r\n  \"name\": \"Svetlana\",\r\n  \"username\": \"Sveta\",\r\n  \"email\": \"svet@mail.com\",\r\n  \"password\": \"admin\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -38,36 +173,36 @@
 						}
 					},
 					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJwaW1tcEBnbWFpbC5jb20iLCJpYXQiOjE3MDc4MzM2NDIsImV4cCI6MTcwODQzODQ0Mn0.C3pab1rFvqPjfR-jZPRuo5TCrOuwZ3OhqQBRaHb_s1oDpoq1MBE6lXvDmPgvXeWR",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				},
 				{
-					"name": "Логин",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"usernameOrEmail\": \"pimpo\",\r\n  \"password\": \"admin\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/auth/login",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"auth",
-								"login"
-							]
-						}
-					},
-					"response": []
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		},
@@ -82,7 +217,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJwaW1tcEBnbWFpbC5jb20iLCJpYXQiOjE3MDY1NTA3MzQsImV4cCI6MTcwNzE1NTUzNH0.l32IuZiR720vDeK8cbrznP0dI4FuXerBbKAWBXAnDL0ze4ciJ7bNORiQJHySgo37",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJwaW1tcEBnbWFpbC5jb20iLCJpYXQiOjE3MDc3NjU3MzEsImV4cCI6MTcwODM3MDUzMX0.WFy8HdN9s-oT-e0u3gkALHTAQcd9yffPLc8aHkWo9AExpjPt_lY2Zjq1saBPC2aI",
 									"type": "string"
 								}
 							]
@@ -113,6 +248,61 @@
 				},
 				{
 					"name": "Получение всех записей",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status OK\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Test time 20\", function (){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(20)\r",
+									"})\r",
+									"\r",
+									"\r",
+									"pm.test(\"Test Json\", function (){\r",
+									"    pm.response.to.have.jsonBody()\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Test body\", function (){\r",
+									"    const body = pm.response.json()\r",
+									"    pm.expect(body).to.have.property(\"pageNo\");\r",
+									"    pm.expect(body).to.have.property(\"pageSize\");\r",
+									"    pm.expect(body).to.have.property(\"totalElements\");\r",
+									"    pm.expect(body).to.have.property(\"totalPages\");\r",
+									"    pm.expect(body).to.have.property(\"last\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Test Json is not NULL\", function () {\r",
+									"    const body = pm.response.json();\r",
+									"    pm.expect(body.totalPages).not.equal(null)\r",
+									"})\r",
+									"// totalPages имеет не нулевое значение \r",
+									"\r",
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Test Headers\", function () {\r",
+									"    pm.response.to.be.header(\"Pragma\",\"no-cache\")\r",
+									"    pm.response.to.be.header(\"X-Frame-Options\",\"DENY\")\r",
+									"    pm.response.to.be.header(\"Connection\",\"keep-alive\")\r",
+									"})\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -143,19 +333,37 @@
 				},
 				{
 					"name": "Получение записи по id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status OK\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Test time 20\", function (){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(20)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Test Json\", function (){\r",
+									"    pm.response.to.have.jsonBody()\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJwaW1tcEBnbWFpbC5jb20iLCJpYXQiOjE3MDY1NTA3MzQsImV4cCI6MTcwNzE1NTUzNH0.l32IuZiR720vDeK8cbrznP0dI4FuXerBbKAWBXAnDL0ze4ciJ7bNORiQJHySgo37",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "GET",
 						"header": [],
@@ -169,14 +377,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/api/posts/{{id}}",
+							"raw": "{{url}}/api/posts/{{iduser}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"api",
 								"posts",
-								"{{id}}"
+								"{{iduser}}"
 							]
 						}
 					},
